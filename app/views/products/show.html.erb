@@ -1,0 +1,28 @@
+<% @page_title = "Show Product" %>
+
+<%= link_to("<< Back to Product List", products_path, :class => 'back-link') %>
+
+<div>
+  <h2>Show Product</h2>
+
+  <table summary="Product detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @product.name %></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= @product.description %></td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td><%= @product.price %></td>
+    </tr>
+    <tr>
+      <th>status</th>
+      <td><%= @product.status==1?"Enabled":"Disabled" %></td>
+    </tr>
+  </table>
+</div>
+<% if @product.status==1 %><%= link_to("Add To Cart", new_product_line_path(@product.id), remote: true) %>
+<div class="col-md-6 col-md-offset-2" id="line-form" style="display:none;"></div><% else %><span style="color:red">Not Available</span>  <% end %>

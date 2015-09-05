@@ -1,0 +1,16 @@
+<% @page_title = 'Create Product' %>
+
+
+<div>
+  <h2>Create New Product</h2>
+
+  <%= form_for(@product) do |f| %>
+
+      <%= render(:partial => 'form', :locals => {:f => f} ) %>
+
+      <div class="form-buttons">
+        <%= submit_tag('Create Product') %>
+      </div>
+
+  <% end %>
+</div>

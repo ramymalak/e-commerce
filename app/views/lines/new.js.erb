@@ -1,0 +1,14 @@
+$('#line-form').html("<%= j (render 'form') %>");
+$('#line-form').slideDown(350);
+function isFloat(n){
+    return n.indexOf(".")==-1?false:true
+}
+$('#line-form').submit(function(){
+    if($('#line_qty').val()==""){
+        $(".error").text("Quantity can not be blink")
+    }else if(isNaN($('#line_qty').val()) || isFloat($('#line_qty').val())){
+        $(".error").text("Quantity must be integer number")
+    }else if($('#line_qty').val()=="0"){
+        $(".error").text("Quantity must be greater than 0")
+    }
+})

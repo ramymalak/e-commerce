@@ -1,0 +1,26 @@
+<style>.error{
+    color:red;
+}</style>
+<table summary="customer form fields">
+  <tr>
+    <th><%= f.label(:firstname) %></th>
+    <td><%= f.text_field(:firstname) %><div class="error"><% if @customer.errors[:firstname].kind_of?(Array)  %><% @customer.errors[:firstname].each do |error| %> <%= error %><br/> <%end%><% end %></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:lastname) %></th>
+    <td><%= f.text_field(:lastname) %><div class="error"><% if @customer.errors[:lastname].kind_of?(Array)  %><% @customer.errors[:lastname].each do |error| %> <%= error %> <br/><%end%> <% end %></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:email) %></th>
+    <td><%= f.text_field(:email) %><div class="error"><% if @customer.errors[:email].kind_of?(Array)  %><% @customer.errors[:email].each do |error| %> <%= error %><br/> <%end%> <% end %></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:password) %></th>
+    <td><%= f.password_field(:password) %><div class="error"><% if @customer.errors[:password].kind_of?(Array)  %><% @customer.errors[:password].each do |error| %> <%= error %><br/> <%end%> <% end %>
+      <% if @min_pass_length %><%= @min_pass_length %><%end%></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:password_confirmation) %></th>
+    <td><%= f.password_field(:password_confirmation) %><div class="error"><% if @customer.errors[:password_confirmation].kind_of?(Array)  %><% @customer.errors[:password_confirmation].each do |error| %> <%= error %> <br/><%end%> <% end %></div></td>
+  </tr>
+</table>

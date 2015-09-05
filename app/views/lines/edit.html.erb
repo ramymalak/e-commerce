@@ -1,0 +1,18 @@
+<style>.error{
+    color:red;
+}</style>
+<%= form_for [@line.product, @line] do |f|   %>
+    <table>
+      <tr>
+        <th></th>
+        <td><%= f.hidden_field(:product_id,:value=>@line.product.id) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:qty, "Quantity") %></th>
+        <td><%= f.text_field(:qty) %><div class="error"><% if @line.errors[:qty].kind_of?(Array)  %><% @line.errors[:qty].each do |error| %> <%= error %><br/> <%end%><% end %></div></td>
+      </tr>
+    </table>
+    <div class="form-buttons">
+      <%= submit_tag("Done Edit") %>
+    </div>
+<% end %>

@@ -1,0 +1,6 @@
+      invoke  active_record
+      remove    db/migrate/20150903151713_create_products.rb
+      remove    app/models/product.rb
+      invoke    test_unit
+      remove      test/models/product_test.rb
+      remove      test/fixtures/products.yml

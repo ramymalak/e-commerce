@@ -1,0 +1,22 @@
+<style>.error{
+    color:red;
+}</style>
+
+<table summary="product form fields">
+  <tr>
+    <th><%= f.label(:name) %></th>
+    <td><%= f.text_field(:name) %><div class="error"><% if @product.errors[:name].kind_of?(Array)  %><% @product.errors[:name].each do |error| %> <%= error %><br/> <%end%><% end %></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:description) %></th>
+    <td><%= f.text_field(:description) %><div class="error"><% if @product.errors[:description].kind_of?(Array)  %><% @product.errors[:description].each do |error| %> <%= error %><br/> <%end%><% end %></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:price) %></th>
+    <td><%= f.text_field(:price) %><div class="error"><% if @product.errors[:price].kind_of?(Array)  %><% @product.errors[:price].each do |error| %> <%= error %><br/> <%end%><% end %></div></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:status) %></th>
+    <td><%= f.select(:status,{"Enabled"=>1,"Disabled"=>0}) %></td>
+  </tr>
+</table>

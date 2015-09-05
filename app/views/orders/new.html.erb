@@ -1,0 +1,60 @@
+<% @page_title = 'New Order' %>
+<div><%= link_to("<< Back to Product List", products_path, :class => 'back-link') %></div>
+<br/>
+<button id="display_details">Show Details</button>
+<button id="Hide_details" >Hide Details</button>
+<form method="POST" action="http://localhost:3001/payments">
+
+    <table>
+      <tr>
+        <th>Order Number</th>
+        <td><%= @order.order_no %></td>
+      </tr>
+      <tr>
+        <th>Total Payment</th>
+        <td><%= @order.total %></td>
+      </tr>
+    </table>
+
+    <div id="details" style="display:none;">
+        <table>
+          <tr class="header">
+            <th>Product name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total Line Price</th>
+            <th>Actions</th>
+          </tr>
+          <% @order.lines.each do |line| %>
+          <tr>
+            <td><%= line.product.name %></td>
+            <td><%= line.qty %></td>
+            <td><%= line.unit_price %></td>
+            <td><%= line.total_price %></td>
+            <td>
+                <%= link_to("Edit",edit_product_line_path(line.product.id,line)) %>
+                <%= link_to("Delete" , product_line_path(line.product.id,line),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' }) %></td>
+          </tr>
+          <% end %>
+        </table>
+    </div>
+    <div class="form-buttons">
+      <input type="submit" value="Confirm" />
+    </div>
+</form>
+
+<script>
+    $('#Hide_details').hide();
+  $('#display_details').click(function(){
+      $('#details').slideDown(350);
+      $('#Hide_details').show();
+      $('#display_details').hide();
+  })
+    $('#Hide_details').click(function(){
+        $('#details').slideUp(350);
+        $('#display_details').show();
+        $('#Hide_details').hide();
+    })
+</script>

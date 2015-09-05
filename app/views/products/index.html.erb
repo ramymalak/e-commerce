@@ -1,0 +1,32 @@
+<% @page_title = "Products" %>
+<div>
+  <h2>Products</h2>
+  <% if session[:is_admin]==true %>
+    <%= link_to("Add New Product", new_product_path, :class => 'back-link') %>
+  <% end %>
+  <div><%= pluralize(@products.size, 'product') %> found</div>
+  <div class="col-md-6 col-md-offset-2" id="line-form" style="display:none;"></div>
+  <table summary="Subject list">
+    <tr class="header">
+      <th>Product</th>
+      <th>Actions</th>
+    </tr>
+    <% @products.each do |product| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= product.name %></td>
+          <td class="actions">
+            <% if product.status==1 %><%= link_to("Add To Cart", new_product_line_path(product.id), remote: true) %>
+            <% else %><span style="color:red">Not Available</span>  <% end %>
+            <%= link_to("Show", product_path(product.id)) %>
+            <% if session[:is_admin]==true %>
+            <%= link_to("Edit",edit_product_path(product.id)) %>
+            <%= link_to("Delete" , product_path(product.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }) %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @products %>
+</div>

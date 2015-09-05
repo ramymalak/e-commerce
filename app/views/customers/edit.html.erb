@@ -1,0 +1,25 @@
+<% @page_title = 'Edit Customer' %>
+<div>
+  <h2>Edit Profile</h2>
+
+  <%= form_for(@customer) do |f| %>
+
+      <table>
+        <tr>
+          <th><%= f.label(:firstname) %></th>
+          <td><%= f.text_field(:firstname) %><div class="error"><% if @customer.errors[:firstname].kind_of?(Array)  %><% @customer.errors[:firstname].each do |error| %> <%= error %><br/> <%end%><% end %></div></td>
+        </tr>
+        <tr>
+          <th><%= f.label(:lastname) %></th>
+          <td><%= f.text_field(:lastname) %><div class="error"><% if @customer.errors[:lastname].kind_of?(Array)  %><% @customer.errors[:lastname].each do |error| %> <%= error %> <br/><%end%> <% end %></div></td>
+        </tr>
+        <tr>
+      </table>
+
+      <div class="form-buttons">
+        <%= submit_tag('Edit Customer') %>
+      </div>
+
+  <% end %>
+</div>
+

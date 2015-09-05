@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ECommerce</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <style>
+    .notice{
+        color:lawngreen;
+    }
+  </style>
+</head>
+<body>
+<div id="header">
+  <h1>Simple E-commerce Site</h1>
+  <div><% if session[:user_id] %>Hello,<%= session[:username]%><% end %></div> <% if session[:is_admin]==true %> Admin User<% elsif session[:is_admin]==false %> Customer User <% end %>
+  <div><% if session[:user_id] %> <%= link_to("Profile",customer_path(session[:user_id])) %> <% end %></div>
+  <div><% if session[:user_id] %> <%= link_to("My Orders",orders_path) %> <% end %></div>
+  <div><% if session[:user_id] %> <%= link_to("Products List",products_path) %> <% end %></div>
+  <div><% if session[:user_id] %> <%= link_to("Logout",{:controller => "access",:action=>"logout"}) %> <% end %></div>
+</div>
+<div id="main">
+  <% if !flash[:notice].blank? %>
+      <div class="notice">
+        <%= flash[:notice] %>
+      </div>
+  <% end %>
+  <div>
+    <% if session[:user_id] %> <%= link_to("Place Order",new_order_path) %> <% end %>
+  </div>
+  <div id="content">
+    <%= yield %>
+  </div>
+</div>
+
+</body>
+</html>

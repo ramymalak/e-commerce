@@ -1,0 +1,45 @@
+<% @page_title = "Orders" %>
+<div>
+  <h2>Orders</h2>
+<div style="float:right">
+  <% if @pending_order %>
+    <div><strong>You Have one Pending Order</strong></div>
+    <table summary="Pending Order">
+        <tr class="header">
+            <th>Order number</th>
+            <th>Order total</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td><%= @pending_order.order_no %></td>
+            <td><%= @pending_order.total %></td>
+            <td class="actions">
+            <%= link_to("Show", order_path(@pending_order.id)) %>
+            </td>
+        </tr>
+    </table>
+  <% end %>
+</div>
+
+  <div><%= pluralize(@orders.size, 'order') %> found</div>
+  <% if @orders.size>0 %>
+  <table summary="Orders list">
+    <tr class="header">
+      <th>Order number</th>
+      <th>Order date</th>
+      <th>Order total</th>
+      <th>Actions</th>
+    </tr>
+    <% @orders.each do |order| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= order.order_no %></td>
+          <td><%= order.date %></td>
+          <td><%= order.total %></td>
+          <td class="actions">
+            <%= link_to("Show", order_path(order.id)) %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+      <% end %>
+</div>
